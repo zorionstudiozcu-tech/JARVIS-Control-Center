@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="JARVIS AI personal control center">
+  <title>JARVIS • Control Center</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <div class="brand-mark">J<span>.</span></div>
+    <div class="brand-copy"><strong>J.A.R.V.I.S</strong><small>PERSONAL CONTROL CENTER</small></div>
+    <div class="status-pill"><i></i><span id="systemStatus">SYSTEM READY</span></div>
+  </header>
+
+  <main class="layout">
+    <section class="hero panel">
+      <div class="hero-copy">
+        <p class="eyebrow">PERSONAL AI • v0.1</p>
+        <h1>Your command.<br><span>My next move.</span></h1>
+        <p class="subtext">Your creative and digital work, organized in one place.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="focusCommand">⌁ Talk to JARVIS</button>
+          <button class="ghost-btn" id="refreshStatus">↻ System check</button>
+        </div>
+      </div>
+      <div class="core-wrap" aria-label="JARVIS visual core"><div class="core-ring ring-one"></div><div class="core-ring ring-two"></div><div class="core"><span>J</span></div><div class="core-dot"></div></div>
+      <div class="hero-footer"><span><i class="tiny-dot"></i> AI CONTROL NODE</span><span id="clock">--:--</span></div>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat panel"><span class="stat-icon">◈</span><small>WORKFLOWS</small><strong id="taskCount">0</strong><span class="muted">Tasks in your queue</span></article>
+      <article class="stat panel"><span class="stat-icon">◎</span><small>ACCOUNTS</small><strong id="accountCount">0 <em>/ 6</em></strong><span class="muted">Authenticated connections</span></article>
+      <article class="stat panel"><span class="stat-icon">✧</span><small>AI BRAIN</small><strong id="aiState">Checking</strong><span class="muted" id="aiHint">Server status</span></article>
+    </section>
+
+    <section class="section-head"><div><p class="eyebrow">COMMAND DECK</p><h2>What should we work on?</h2></div><span class="section-tag">VOICE + TEXT</span></section>
+    <section class="command panel">
+      <div class="command-top"><span class="live-indicator"></span><span id="assistantLabel">JARVIS is ready for instructions</span><select id="languageSelect" aria-label="Assistant language"><option value="en">English</option><option value="ur">Urdu / Roman Urdu</option></select></div>
+      <textarea id="commandInput" rows="3" maxlength="8000" placeholder="Example: Create a 30-second sci-fi Short for ZORION studio, with a hook, script, image prompts and a posting plan…"></textarea>
+      <div class="command-bottom"><span class="hint">AI can draft and plan. External actions need connected accounts.</span><div class="button-row"><button class="icon-btn" id="voiceBtn" title="Voice input" aria-label="Voice input">🎙</button><button class="primary-btn" id="sendBtn">Ask JARVIS ↗</button></div></div>
+      <div id="assistantReply" class="reply hidden" aria-live="polite"></div>
+    </section>
+
+    <section class="section-head"><div><p class="eyebrow">INTEGRATION BAY</p><h2>Your digital accounts</h2><p class="subtext">Connect through official authorization. No passwords stored here.</p></div></section>
+    <section class="accounts-grid" id="accountsGrid">
+      <article class="account panel" data-account="youtube"><div class="account-head"><div class="platform-icon youtube">▶</div><span class="state disconnected">Not connected</span></div><h3>YouTube</h3><p>Channel workflows, video publishing and analytics (after API authorization).</p><a href="https://studio.youtube.com/" target="_blank" rel="noopener">Open YouTube Studio ↗</a><button class="connect-btn" data-platform="youtube">Integration setup</button></article>
+      <article class="account panel" data-account="instagram"><div class="account-head"><div class="platform-icon instagram">◎</div><span class="state disconnected">Not connected</span></div><h3>Instagram</h3><p>Eligible professional accounts, publishing and insights via Meta APIs.</p><a href="https://www.instagram.com/" target="_blank" rel="noopener">Open Instagram ↗</a><button class="connect-btn" data-platform="instagram">Integration setup</button></article>
+      <article class="account panel" data-account="facebook"><div class="account-head"><div class="platform-icon facebook">f</div><span class="state disconnected">Not connected</span></div><h3>Facebook Page</h3><p>Page posts and insights through approved Meta permissions.</p><a href="https://www.facebook.com/" target="_blank" rel="noopener">Open Facebook ↗</a><button class="connect-btn" data-platform="facebook">Integration setup</button></article>
+      <article class="account panel" data-account="x"><div class="account-head"><div class="platform-icon xbrand">𝕏</div><span class="state disconnected">Not connected</span></div><h3>X / Twitter</h3><p>Drafts and supported post operations using X developer access.</p><a href="https://x.com/" target="_blank" rel="noopener">Open X ↗</a><button class="connect-btn" data-platform="x">Integration setup</button></article>
+      <article class="account panel" data-account="tiktok"><div class="account-head"><div class="platform-icon tiktok">♪</div><span class="state disconnected">Not connected</span></div><h3>TikTok</h3><p>Content workflows subject to TikTok API access and app review.</p><a href="https://www.tiktok.com/" target="_blank" rel="noopener">Open TikTok ↗</a><button class="connect-btn" data-platform="tiktok">Integration setup</button></article>
+      <article class="account panel" data-account="whatsapp"><div class="account-head"><div class="platform-icon whatsapp">◔</div><span class="state disconnected">Not connected</span></div><h3>WhatsApp Business</h3><p>Business messaging via the official Cloud API, not personal-account automation.</p><a href="https://business.whatsapp.com/" target="_blank" rel="noopener">Open WhatsApp Business ↗</a><button class="connect-btn" data-platform="whatsapp">Integration setup</button></article>
+    </section>
+
+    <section class="section-head"><div><p class="eyebrow">MISSION QUEUE</p><h2>Workflow tasks</h2></div><button class="ghost-btn small" id="clearDone">Clear completed</button></section>
+    <section class="tasks panel">
+      <form id="taskForm"><input id="taskInput" maxlength="240" placeholder="Add a mission, e.g. Draft tomorrow's Short…" required><button class="primary-btn" type="submit">＋ Add</button></form>
+      <div id="taskList" class="task-list"><div class="empty">No missions yet. Add your first task above.</div></div>
+    </section>
+
+    <footer><span>JARVIS CONTROL CENTER</span><span>Private starter • v0.1 • Not affiliated with Marvel</span></footer>
+  </main>
+  <dialog id="setupDialog"><form method="dialog" class="dialog-inner"><button class="dialog-close" aria-label="Close">×</button><p class="eyebrow">INTEGRATION GUIDE</p><h2 id="dialogTitle">Connect account</h2><p id="dialogText"></p><ol id="dialogSteps"></ol><p class="warning">Never enter your password or one-time code into JARVIS. A real integration must redirect to the platform's official authorization screen.</p><button class="primary-btn full">Understood</button></form></dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
